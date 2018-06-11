@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <title>Simple ml5.js Example</title>
+        <script src="https://unpkg.com/ml5" type="text/javascript"></script>
+        <style>
+            .inference_result {
+                font-size: 20pt;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+            img {
+                height: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Simple Image Classification Example</h1>
+        <img onload="onImageReady()" id="image" src="cats/493.jpg" crossOrigin="anonymous"/>
+        
+        <p class="inference_result">
+            I guess this is a <span id="result">...</span>.
+            My confidence is <span id="probability">...</span>
+        </p>
+
+        <script>
+            const classifier = new ml5.ImageClassifier('SqueezeNet');
+        
+            function onImageReady() {
+                let img = document.getElementById('image');
+                classifier.predict(img, 10, gotResult);
+            }
+        
+            function gotResult(results) {
+                document.getElementById('result').innerText = results[0].className;
+                document.getElementById('probability').innerText = results[0].probability.toPrecision(2);
+            }
+
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * Math.floor(max));
+            }
+
+            function loadNewImage() {
+                let img = document.getElementById('image');
+                randomNum = getRandomInt(12500);                
+                img.src = 'cats/' + randomNum + '.jpg';
+                
+                setTimeout(loadNewImage, 5000);
+            }
+
+            loadNewImage();
+        </script>    
+    </body>
+</html>

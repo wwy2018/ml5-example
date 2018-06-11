@@ -1,0 +1,24 @@
+{
+  "name": "ml5-example",
+  "version": "1.0.0",
+  "description": "Simple example showcasing ml5js.org library",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalaspuffar/ml5-example.git"
+  },
+  "author": "Daniel Persson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kalaspuffar/ml5-example/issues"
+  },
+  "homepage": "https://github.com/kalaspuffar/ml5-example#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3"
+  }
+}
