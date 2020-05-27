@@ -6,6 +6,7 @@ app.use(cors())
 
 app.use('/cats', express.static('cats'))
 app.use('/', express.static('src'))
+// app.use('/', () => {console.log('ccc')})
 
 app.listen(80, function () {
   console.log('CORS-enabled web server listening on port 80')

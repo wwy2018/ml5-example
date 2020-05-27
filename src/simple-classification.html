@@ -17,7 +17,7 @@
     </head>
     <body>
         <h1>Simple Image Classification Example</h1>
-        <img onload="onImageReady()" id="image" src="cats/493.jpg"/>
+        <img onload="onImageReady()" id="image" src="./cat.jpg"/>
         
         <p class="inference_result">
             I guess this is a <span id="result">...</span>.
@@ -25,31 +25,16 @@
         </p>
 
         <script>
-            const classifier = new ml5.ImageClassifier('SqueezeNet');
-        
             function onImageReady() {
                 let img = document.getElementById('image');
-                classifier.predict(img, 10, gotResult);
+                ml5.imageClassifier('MobileNet')
+                .then(classifier => {
+                    classifier.classify(img, (err, res) => {
+                        console.log('r--', res)
+                    })
+                })
             }
-        
-            function gotResult(results) {
-                document.getElementById('result').innerText = results[0].className;
-                document.getElementById('probability').innerText = results[0].probability.toPrecision(2);
-            }
-
-            function getRandomInt(max) {
-                return Math.floor(Math.random() * Math.floor(max));
-            }
-
-            function loadNewImage() {
-                let img = document.getElementById('image');
-                randomNum = getRandomInt(12500);                
-                img.src = 'images/' + randomNum + '.jpg';
-                
-                setTimeout(loadNewImage, 5000);
-            }
-
-            loadNewImage();
+            
         </script>    
     </body>
 </html>
